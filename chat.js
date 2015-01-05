@@ -33,7 +33,10 @@ io.on('connection', function(socket){
 
   socket.on('chat message', function(msg){
     if(socket.userName){
-      io.emit('chat message', socket.userName + ': ' + msg);
+      var date = new Date();
+      var hours = date.getHours();
+      var minutes = date.getMinutes();
+      io.emit('chat message', (hours < 10 ? '0' + hours : hours)+ ':'+ (minutes < 10 ? '0'+ minutes : minutes) + ' ' + socket.userName + ': ' + msg);
     }
     else{
       socket.emit('message error', 'Please choose a userName by typing /<userName>, e.g. type \'/Ceren\' to be called \'Ceren\'.');

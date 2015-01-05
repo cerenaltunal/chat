@@ -15,7 +15,7 @@
     </style>
   </head>
   <body>
-    <ul id="messages"></ul>
+    <ul id="messages"><li class="errormsg">Please choose a userName by typing /&#60;userName&#62;, e.g. type '/Ceren' to be called 'Ceren'.</li></ul>
     <form action="">
       <input id="m" autocomplete="off" /><button>Send</button>
     </form>
@@ -55,10 +55,10 @@
         return false;
       });
       socket.on('chat message', function(msg){
-        $('#messages').append($('<li>').text(msg));
+        $('#messages').prepend($('<li>').text(msg));
       });
       socket.on('message error', function(msg){
-        $('#messages').append($('<li class="errormsg">').text(msg));
+        $('#messages').prepend($('<li class="errormsg">').text(msg));
       });
     </script>
   </body>
